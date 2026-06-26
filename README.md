@@ -1,3 +1,19 @@
+# v2ray-mli — native Apple Silicon fork
+
+> **This is a fork of the archived [`v2ray/v2ray-core`](https://github.com/v2ray/v2ray-core).**
+> It builds and runs **natively on Apple Silicon (M-series) macOS**, avoiding the
+> Rosetta 2 "not optimized for your Mac" warning shown by upstream's amd64-only
+> binaries. The only feature removed is the QUIC transport, which is
+> incompatible with modern Go toolchains (it pins `qtls` to Go 1.15). All other
+> transports and proxy protocols are unchanged.
+>
+> - **Releases:** native `darwin/arm64` + `darwin/amd64`, Developer ID signed.
+> - **What changed & why:** [`CHANGELOG.md`](CHANGELOG.md)
+> - **How to build / sign / release:** [`docs/BUILD.md`](docs/BUILD.md)
+> - Version scheme: `X.Y.Z-mli`, tags `mli-vX.Y.Z`.
+
+***
+
 # Move To https://github.com/v2fly/v2ray-core
 
 ***

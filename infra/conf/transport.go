@@ -12,7 +12,6 @@ type TransportConfig struct {
 	WSConfig   *WebSocketConfig    `json:"wsSettings"`
 	HTTPConfig *HTTPConfig         `json:"httpSettings"`
 	DSConfig   *DomainSocketConfig `json:"dsSettings"`
-	QUICConfig *QUICConfig         `json:"quicSettings"`
 }
 
 // Build implements Buildable.
@@ -71,17 +70,6 @@ func (c *TransportConfig) Build() (*transport.Config, error) {
 		config.TransportSettings = append(config.TransportSettings, &internet.TransportConfig{
 			ProtocolName: "domainsocket",
 			Settings:     serial.ToTypedMessage(ds),
-		})
-	}
-
-	if c.QUICConfig != nil {
-		qs, err := c.QUICConfig.Build()
-		if err != nil {
-			return nil, newError("Failed to build QUIC config.").Base(err)
-		}
-		config.TransportSettings = append(config.TransportSettings, &internet.TransportConfig{
-			ProtocolName: "quic",
-			Settings:     serial.ToTypedMessage(qs),
 		})
 	}
 

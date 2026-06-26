@@ -18,9 +18,9 @@ import (
 )
 
 var (
-	version  = "4.31.0"
-	build    = "Custom"
-	codename = "V2Fly, a community-driven edition of V2Ray."
+	version  = "4.31.1-mli"
+	build    = "mli"
+	codename = "v2ray-mli, a native Apple Silicon fork of V2Ray."
 	intro    = "A unified platform for anti-censorship."
 )
 

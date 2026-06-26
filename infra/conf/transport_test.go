@@ -5,16 +5,13 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"v2ray.com/core/common/protocol"
 	"v2ray.com/core/common/serial"
 	. "v2ray.com/core/infra/conf"
 	"v2ray.com/core/transport"
 	"v2ray.com/core/transport/internet"
 	"v2ray.com/core/transport/internet/headers/http"
 	"v2ray.com/core/transport/internet/headers/noop"
-	"v2ray.com/core/transport/internet/headers/tls"
 	"v2ray.com/core/transport/internet/kcp"
-	"v2ray.com/core/transport/internet/quic"
 	"v2ray.com/core/transport/internet/tcp"
 	"v2ray.com/core/transport/internet/websocket"
 )
@@ -86,12 +83,6 @@ func TestTransportConfig(t *testing.T) {
 				},
 				"wsSettings": {
 					"path": "/t"
-				},
-				"quicSettings": {
-					"key": "abcd",
-					"header": {
-						"type": "dtls"
-					}
 				}
 			}`,
 			Parser: createParser(),
@@ -150,16 +141,6 @@ func TestTransportConfig(t *testing.T) {
 						ProtocolName: "websocket",
 						Settings: serial.ToTypedMessage(&websocket.Config{
 							Path: "/t",
-						}),
-					},
-					{
-						ProtocolName: "quic",
-						Settings: serial.ToTypedMessage(&quic.Config{
-							Key: "abcd",
-							Security: &protocol.SecurityConfig{
-								Type: protocol.SecurityType_NONE,
-							},
-							Header: serial.ToTypedMessage(&tls.PacketConfig{}),
 						}),
 					},
 				},
